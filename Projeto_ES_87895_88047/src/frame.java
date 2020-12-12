@@ -14,10 +14,17 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
 
 public class frame extends JFrame {
 
@@ -26,6 +33,8 @@ public class frame extends JFrame {
 	private JTextField txtInsiraOParmetro_1;
 	private JTextField txtTamanhocod;
 	private JTable table;
+	private JFileChooser fileChooser;
+	private File file;
 
 	/**
 	 * Launch the application.
@@ -47,6 +56,9 @@ public class frame extends JFrame {
 	 * Create the frame.
 	 */
 	public frame() {
+		fileChooser = new JFileChooser();
+		fileChooser.setFileFilter(new FileNameExtensionFilter("Excel", "xlsx"));
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 500);
 		contentPane = new JPanel();
@@ -95,6 +107,20 @@ public class frame extends JFrame {
 		contentPane.add(txtInsiraOParmetro_1);
 		
 		JButton btnNewButton = new JButton("Import Excel Table");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+//				int returnValue = fileChooser.showOpenDialog();
+				
+//				if(returnValue == JFileChooser.APPROVE_OPTION) {
+//					try {
+//						file = fileChooser.getSelectedFile();
+//						
+//					}catch (IOException ioe) {
+//					}
+//				}
+			}
+		});
 		btnNewButton.setBackground(new Color(0, 0, 204));
 		btnNewButton.setBounds(38, 46, 146, 39);
 		contentPane.add(btnNewButton);
