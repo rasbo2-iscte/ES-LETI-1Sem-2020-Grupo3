@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Defeitos {
+	
 	private readFile r;
 	private int dci;
 	private int dii;
@@ -9,14 +10,16 @@ public class Defeitos {
 	private int adii;
 	
 	
-	public Defeitos() throws IOException {
+	public Defeitos(int loc, int cyclo) throws IOException {
 		File file = new File("Defeitos.xlsx");
 		r = new readFile(file);
 		
 		
 		for(int i = 1; i <= 420; i++) {
+			LongMethod lm = new LongMethod(loc, cyclo, i);
+			
 			if(r.getCell(i, 9).equals("FALSE") && r.getCell(i, 10).equals("FALSE")) {
-				if(r.getCell(i, 8).equals("FALSE")) {
+				if(!lm.isB()) {
 					adci++;
 				}
 				else {
@@ -25,7 +28,7 @@ public class Defeitos {
 			}
 			else {
 				if(r.getCell(i, 9).equals("FALSE") && r.getCell(i, 10).equals("TRUE")) {
-					if(r.getCell(i, 8).equals("FALSE")) {
+					if(!lm.isB()) {
 						adci++;
 						dii++;
 					}
@@ -36,7 +39,7 @@ public class Defeitos {
 				}
 				else {
 					if(r.getCell(i, 9).equals("TRUE") && r.getCell(i, 10).equals("FALSE")) {
-						if(r.getCell(i, 8).equals("FALSE")) {
+						if(!lm.isB()) {
 							adci++;
 							dii++;
 						}
@@ -47,7 +50,7 @@ public class Defeitos {
 					}
 					else {
 						if(r.getCell(i, 9).equals("TRUE") && r.getCell(i, 10).equals("TRUE")) {
-							if(r.getCell(i, 8).equals("FALSE")) {
+							if(!lm.isB()) {
 								dii++;
 							}
 							else {
@@ -67,6 +70,6 @@ public class Defeitos {
 	
 	
 	public static void main(String[] args) throws IOException {
-		Defeitos j = new Defeitos();
+		Defeitos j = new Defeitos(50, 10);
 	}
 }

@@ -53,4 +53,8 @@ public class readFile  {
 	public String getCell(int x, int y) {
 		return this.sheet.getRow(x).getCell(y).toString();
 	}
+	
+	public int getCellInt(int x, int y) {
+		return (int)(this.sheet.getRow(x).getCell(y).getNumericCellValue());
+	}
 }
